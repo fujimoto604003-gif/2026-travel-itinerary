@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年夏旅行しおり（広島・別府・博多）</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  background: #f5f5f0;
+  color: #1a1a1a;
+  padding: 2rem 1rem;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ヘッダー */
+.trip-header {
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.5rem 1.2rem;
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #1D9E75;
+}
+.trip-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #085041;
+  margin-bottom: 4px;
+}
+.trip-header .dates {
+  font-size: 14px;
+  color: #555;
+}
+
+/* 日付ブロック */
+.day-block {
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e0d8;
+}
+
+.day-header {
+  background: #E1F5EE;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #c8eadd;
+}
+.day-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #085041;
+}
+.day-sub {
+  font-size: 12px;
+  color: #0F6E56;
+}
+
+/* タイムライン行 */
+.row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  min-height: 48px;
+  border-bottom: 1px solid #f0f0ea;
+}
+.row:last-child { border-bottom: none; }
+
+.row-time {
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #185FA5;
+  border-right: 1px solid #f0f0ea;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.row-content {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.row-main {
+  font-size: 14px;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+.row-main b { font-weight: 600; }
+
+/* バッジ */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: 500;
+  margin-right: 4px;
+}
+.tr  { background: #FEF3E2; color: #854F0B; }
+.nt  { background: #E8F4FD; color: #0C447C; }
+.sh  { background: #EAF7EE; color: #2D7A3E; }
+.cr  { background: #FDE8F2; color: #8B1A4A; }
+.eb  { background: #C0DD97; color: #27500A; }
+
+/* 詳細ボックス */
+.info-box {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.info-box.pink   { background: #FDE8F2; border: 1px solid #F0A8CC; color: #5A1235; }
+.info-box.purple { background: #F0EFFE; border: 1px solid #C5BCEE; color: #2E1A82; }
+.info-box.green  { background: #EAF7EE; border: 1px solid #8FD1A0; color: #1A4D28; }
+.info-box.amber  { background: #FEF3E2; border: 1px solid #F5C87A; color: #5C3800; }
+
+.info-box-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* 時刻表 */
+.timetable {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: #f8f8f4;
+  border-radius: 8px;
+  border: 1px solid #e0e0d8;
+}
+.timetable-title {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 5px;
+}
+.timetable-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.pill {
+  font-size: 12px;
+  font-weight: 500;
+  background: white;
+  border: 1px solid #d0d0c8;
+  border-radius: 4px;
+  padding: 2px 8px;
+  color: #333;
+}
+.pill.active {
+  background: #9FE1CB;
+  border-color: #1D9E75;
+  color: #085041;
+}
+.timetable-note {
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* コースボックス */
+.course-box {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: #F0EFFE;
+  border-radius: 8px;
+  border: 1px solid #C5BCEE;
+}
+.course-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2E1A82;
+  margin-bottom: 6px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.step-time { color: #534AB7; font-weight: 600; }
+.step-desc { color: #26215C; line-height: 1.5; }
+.step-desc .sub { color: #534AB7; font-size: 11px; }
+.step-divider { height: 1px; background: #C5BCEE; opacity: 0.4; margin: 4px 0; }
+
+/* 動線ボックス */
+.flow-box {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: #EAF7EE;
+  border-radius: 8px;
+  border: 1px solid #8FD1A0;
+}
+.flow-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1A4D28;
+  margin-bottom: 7px;
+}
+.flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.flow-node {
+  font-size: 11px;
+  font-weight: 500;
+  background: white;
+  border: 1px solid #8FD1A0;
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: #1A4D28;
+}
+.flow-arrow { color: #2D7A3E; font-size: 14px; }
+.flow-note {
+  font-size: 11px;
+  color: #2D7A3E;
+  margin-top: 6px;
+}
+
+/* バッファー行 */
+.buffer-row {
+  background: #EAF7EE;
+}
+.buffer-row .row-time { color: #2D7A3E; }
+.buffer-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1A4D28;
+}
+.buffer-note {
+  font-size: 12px;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* 事前確認・費用セクション */
+.section-block {
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e0d8;
+}
+.section-header {
+  background: #FEF3E2;
+  padding: 10px 16px;
+  border-bottom: 1px solid #F5D898;
+}
+.section-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5C3800;
+}
+.section-body {
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #333;
+}
+.section-body a {
+  color: #185FA5;
+  text-decoration: none;
+}
+.section-body a:hover { text-decoration: underline; }
+
+@media (max-width: 480px) {
+  body { padding: 1rem 0.5rem; }
+  .row { grid-template-columns: 72px 1fr; }
+  .row-time { font-size: 11px; padding: 8px; }
+  .row-content { padding: 8px 10px; }
+  .flow-steps { flex-direction: column; align-items: flex-start; }
+  .flow-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="trip-header">
+    <h1>🗾 2026年 夏旅行　広島 → 別府 → 博多</h1>
+    <div class="dates">6月14日（日）〜 6月17日（水）</div>
+  </div>
+
+  <!-- ==================== DAY 1 ==================== -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-label">6月14日（日）</span>
+      <span class="day-sub">広島・宮島</span>
+    </div>
+
+    <div class="row">
+      <div class="row-time">09:06</div>
+      <div class="row-content">
+        <div class="row-main"><b>新神戸</b> 出発</div>
+        <span class="badge tr">さくら747号</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">10:22</div>
+      <div class="row-content">
+        <div class="row-main"><b>広島駅</b> 到着 → <b>Crosta広島</b>（新幹線口1階）へ直行</div>
+        <span class="badge cr">Crosta広島 キャリーサービス</span>
+        <div class="info-box pink">
+          <div class="info-box-title">📦 キャリーサービス手続き（約10〜15分）</div>
+          預け先：グランドプリンスホテル広島（配送対応ホテル確認済み）<br>
+          料金：1,500円/個 × 2個 ＝ 3,000円　／　受付締切：14:00まで<br>
+          ホテル到着：17:00頃（時間指定不可）<br>
+          宿泊先・氏名・電話番号を伝票に記入するだけ<br>
+          <b>→ 以降は手ぶらで宮島観光！シャトルバスもそのまま乗れる！</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">11:00</div>
+      <div class="row-content">
+        <div class="row-main"><b>広島</b> → <b>宮島口</b>（11:27着）</div>
+        <span class="badge tr">JR山陽本線 岩国行 1番線</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">11:40</div>
+      <div class="row-content">
+        <div class="row-main"><b>宮島口港</b> → <b>宮島港</b>（11:50着）</div>
+        <span class="badge tr">JR西日本宮島フェリー</span>
+        <div style="font-size:11px;color:#888;">徒歩7分</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">昼〜</div>
+      <div class="row-content">
+        <div class="row-main"><b>宮島観光</b>（手ぶらで！）</div>
+        <span class="badge nt">昼食：まめたぬき</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">14:10</div>
+      <div class="row-content">
+        <div class="row-main"><b>宮島港</b> → <b>宮島口港</b>（14:20）→ <b>宮島口</b>（14:34）</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">15:01</div>
+      <div class="row-content">
+        <div class="row-main"><b>広島駅</b> 到着 → そのままシャトルバス乗り場へ</div>
+        <div style="font-size:12px;color:#888;">※荷物引き取り不要！</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">15:20頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>広島駅（北口）</b> → <b>グランドプリンスホテル広島</b>（約16:10着）</div>
+        <span class="badge sh">無料シャトルバス 15:40発</span>
+        <div class="timetable">
+          <div class="timetable-title">広島駅北口発 シャトルバス全便（所要約30分）</div>
+          <div class="timetable-pills">
+            <span class="pill">10:15</span>
+            <span class="pill">11:25</span>
+            <span class="pill active">✔ 15:40発</span>
+            <span class="pill">17:25</span>
+            <span class="pill">18:55</span>
+          </div>
+          <div class="timetable-note">北口 8・9番のりば付近｜定員45名・先着順｜無料｜ダイヤ改定の場合あり<br>スーツケース2個はCrostaから17:00頃ホテルへ直接届く</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DAY 2 ==================== -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-label">6月15日（月）</span>
+      <span class="day-sub">広島観光（路面電車）→ 別府へ</span>
+    </div>
+
+    <div class="row">
+      <div class="row-time">09:50</div>
+      <div class="row-content">
+        <div class="row-main"><b>グランドプリンスホテル</b> → <b>広島駅（北口）</b>（10:20着）</div>
+        <span class="badge sh">無料シャトルバス 9:50発</span>
+        <div class="timetable">
+          <div class="timetable-title">ホテル発 シャトルバス全便（所要約30分）</div>
+          <div class="timetable-pills">
+            <span class="pill active">✔ 9:50</span>
+            <span class="pill">11:00</span>
+            <span class="pill">15:40</span>
+            <span class="pill">17:00</span>
+            <span class="pill">18:20</span>
+            <span class="pill">19:45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">10:20〜<br>10:35頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>Crosta広島</b> にスーツケース2個を一時預かり</div>
+        <span class="badge cr">Crosta広島 一時預かり</span>
+        <div class="info-box pink">
+          <div class="info-box-title">📋 一時預かりメモ（約10分）</div>
+          料金：標準 800円/個 ／ 大型（3辺180cm以上 or 最長辺85cm以上）1,000円/個<br>
+          2個で 1,600〜2,000円　／　支払い：ICカード・クレカ可<br>
+          引き取り：11:40頃（観光から戻ったとき）
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">10:35頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>路面電車（広電）</b>で原爆ドーム・平和記念公園へ</div>
+        <div class="course-box">
+          <div class="course-title">🚃 路面電車コース（子連れ・約50分）</div>
+          <div class="step">
+            <div class="step-time">10:35頃</div>
+            <div class="step-desc">広島駅（駅ビル2階・広電ホーム）乗車<br><span class="sub">2号線または6号線 → 原爆ドーム前　約15分　運賃：大人240円・子120円</span></div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step">
+            <div class="step-time">10:50頃</div>
+            <div class="step-desc"><b>原爆ドーム前</b> 電停下車 → 見学・散策（約35分）<br><span class="sub">原爆ドーム外観（10分）＋慰霊碑・原爆の子の像（25分）</span></div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step">
+            <div class="step-time">11:25頃</div>
+            <div class="step-desc">電停から広島駅へ乗車（約15分）</div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step">
+            <div class="step-time">11:40頃</div>
+            <div class="step-desc">広島駅着 → Crosta広島でスーツケース2個ピックアップ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">11:50頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>廣島驛辯當</b> で駅弁を購入 → 新幹線改札へ</div>
+        <span class="badge eb">廣島驛辯當 → 改札内すぐ右</span>
+        <div class="flow-box">
+          <div class="flow-title">🍱 購入動線（5〜10分）</div>
+          <div class="flow-steps">
+            <div class="flow-node">Crosta（1階）で荷物受取</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">新幹線改札を通る</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">すぐ右：廣島驛辯當</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">そのままホームへ</div>
+          </div>
+          <div class="flow-note">改札を通った後に買えるので、スーツケースを引きながらモタモタしなくて済む！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row buffer-row">
+      <div class="row-time">11:50〜<br>12:28</div>
+      <div class="row-content">
+        <div class="buffer-text">🟢 バッファー約30分　ホームで余裕を持って乗車</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">12:28</div>
+      <div class="row-content">
+        <div class="row-main"><b>広島</b> → <b>小倉</b>（13:13着）</div>
+        <span class="badge tr">のぞみ17号</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">13:42</div>
+      <div class="row-content">
+        <div class="row-main"><b>小倉</b> → <b>別府</b>（14:52着）</div>
+        <span class="badge tr">ソニック25号</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">15:30</div>
+      <div class="row-content">
+        <div class="row-main"><b>別府駅東口</b> → <b>グランドメルキュール別府湾</b></div>
+        <span class="badge sh">送迎バス 15:30発（固定・完全予約制）</span>
+        <div class="timetable">
+          <div class="timetable-title">別府駅発 送迎バス</div>
+          <div class="timetable-pills">
+            <span class="pill active">✔ 15:30</span>
+            <span class="pill">17:30</span>
+          </div>
+          <div class="timetable-note">※公式サイトから事前予約必要（完全予約制）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DAY 3 ==================== -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-label">6月16日（火）</span>
+      <span class="day-sub">地獄めぐり → 博多へ</span>
+    </div>
+
+    <div class="row">
+      <div class="row-time">09:30</div>
+      <div class="row-content">
+        <div class="row-main"><b>グランドメルキュール</b> → <b>別府駅</b>　荷物を預ける</div>
+        <span class="badge sh">送迎バス 9:30発（→別府駅行き）</span>
+        <div class="timetable">
+          <div class="timetable-title">ホテル発 送迎バス（別府駅行き）</div>
+          <div class="timetable-pills">
+            <span class="pill active">✔ 9:30</span>
+            <span class="pill">11:00</span>
+          </div>
+          <div class="timetable-note">完全予約制（2026年1月〜）｜公式サイトから事前予約必要</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">10:30頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>別府駅西口 3番のりば</b> → <b>海地獄前</b>（11:00頃着）</div>
+        <span class="badge tr">亀の井バス</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">11:00〜</div>
+      <div class="row-content">
+        <div class="row-main"><b>地獄めぐり観光</b></div>
+        <span class="badge nt">約2時間</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">13:15頃</div>
+      <div class="row-content">
+        <div class="row-main"><b>海地獄前</b> → <b>別府駅西口</b>（13:45頃着）</div>
+        <span class="badge tr">亀の井バス</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">14:19</div>
+      <div class="row-content">
+        <div class="row-main"><b>別府駅</b> → <b>博多駅</b>（16:28着）</div>
+        <span class="badge tr">ソニック36号</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">16:28〜</div>
+      <div class="row-content">
+        <div class="row-main"><b>博多ホテル</b> へ移動・チェックイン</div>
+        <span class="badge nt">地下鉄空港線「中洲川端駅」1番出口 徒歩2分</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DAY 4 ==================== -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-label">6月17日（水）</span>
+      <span class="day-sub">博多観光 → 帰路</span>
+    </div>
+
+    <div class="row">
+      <div class="row-time">午前〜</div>
+      <div class="row-content">
+        <div class="row-main"><b>博多観光</b></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">13:23</div>
+      <div class="row-content">
+        <div class="row-main"><b>博多駅</b> → <b>新神戸</b>（15:45着）</div>
+        <span class="badge tr">さくら754号</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 事前確認 ==================== -->
+  <div class="section-block">
+    <div class="section-header">
+      <h2>📌 事前予約・確認が必要なこと</h2>
+    </div>
+    <div class="section-body">
+      <b>① グランドメルキュール別府湾 送迎バス</b>（別府駅発・ホテル発ともに完全予約制）<br>
+      公式サイト：<a href="https://grand-mercure-beppubay-resortandspa.jp/" target="_blank">grand-mercure-beppubay-resortandspa.jp</a><br><br>
+      <b>② Crosta広島 キャリーサービス</b>（事前予約も可能）<br>
+      公式サイト：<a href="https://handsfree-japan.com/hiroshima/" target="_blank">handsfree-japan.com/hiroshima</a>　TEL：090-2867-4941<br><br>
+      <b>③ グランドプリンスホテル広島 シャトルバス時刻</b>（改定の場合あり）<br>
+      公式サイト：<a href="https://www.princehotels.co.jp/hiroshima/informations/shuttlebus/" target="_blank">princehotels.co.jp/hiroshima</a>
+    </div>
+  </div>
+
+  <!-- ==================== 費用 ==================== -->
+  <div class="section-block">
+    <div class="section-header">
+      <h2>💰 費用メモ（概算）</h2>
+    </div>
+    <div class="section-body">
+      <b>6月14日</b><br>
+      Crosta キャリーサービス：1,500円 × 2個 ＝ 3,000円<br><br>
+      <b>6月15日</b><br>
+      Crosta 一時預かり：800〜1,000円 × 2個 ＝ 1,600〜2,000円<br>
+      路面電車（往復）：大人240円×2 ＋ 子ども120円×1 ＝ 600円<br>
+      廣島驛辯當：お好みで
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
