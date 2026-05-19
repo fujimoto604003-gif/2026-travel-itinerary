@@ -284,6 +284,53 @@ body {
 }
 .section-body a:hover { text-decoration: underline; }
 
+/* バス選択肢A/B */
+.bus-options { margin-top: 8px; }
+.bus-option {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 7px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.bus-option-a {
+  background: #E8F4FD;
+  border: 2px solid #185FA5;
+}
+.bus-option-b {
+  background: #FEF3E2;
+  border: 1px dashed #F5C87A;
+}
+.bus-option-label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.bus-option-a .bus-option-label { color: #0C447C; }
+.bus-option-b .bus-option-label { color: #854F0B; }
+.bus-warn {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #854F0B;
+  font-weight: 600;
+}
+
+/* スポットタグ */
+.spot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.spot-tag {
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #C5BCEE;
+  border-radius: 4px;
+  padding: 3px 9px;
+  color: #2E1A82;
+}
+
 @media (max-width: 480px) {
   body { padding: 1rem 0.5rem; }
   .row { grid-template-columns: 72px 1fr; }
@@ -530,11 +577,12 @@ body {
       <span class="day-sub">地獄めぐり → 博多へ</span>
     </div>
 
+    <!-- ホテル発 -->
     <div class="row">
       <div class="row-time">09:30</div>
       <div class="row-content">
-        <div class="row-main"><b>グランドメルキュール</b> → <b>別府駅</b>　荷物を預ける</div>
-        <span class="badge sh">送迎バス 9:30発（→別府駅行き）</span>
+        <div class="row-main"><b>グランドメルキュール</b> → <b>別府駅</b></div>
+        <span class="badge sh">送迎バス 9:30発（完全予約制）</span>
         <div class="timetable">
           <div class="timetable-title">ホテル発 送迎バス（別府駅行き）</div>
           <div class="timetable-pills">
@@ -546,30 +594,94 @@ body {
       </div>
     </div>
 
+    <!-- 別府駅着・ロッカー -->
     <div class="row">
-      <div class="row-time">10:30頃</div>
+      <div class="row-time">10:00〜<br>10:10頃</div>
       <div class="row-content">
-        <div class="row-main"><b>別府駅西口 3番のりば</b> → <b>海地獄前</b>（11:00頃着）</div>
-        <span class="badge tr">亀の井バス</span>
+        <div class="row-main"><b>別府駅</b> 到着 → コインロッカーへ荷物を預ける</div>
+        <div class="info-box pink">
+          <div class="info-box-title">🔒 別府駅 コインロッカー情報</div>
+          <b>場所①：</b>西口を出てすぐ左手（バスのりば前）｜24時間利用可<br>
+          <b>料金：</b>小型 400円 ／ 中型 600円 ／ 超大型 900円　スーツケース対応◎<br><br>
+          <b>場所②：えきマチ1丁目（ヤマト運輸クローク）</b><br>
+          700円/個　受付 9:00〜19:00　ロッカーに入らない場合はこちら<br>
+          <a href="https://maps.google.com/?q=Beppu+Station+coin+locker" target="_blank" style="color:#185FA5;display:inline-block;padding:4px 0;">📍 Google マップで確認</a>
+        </div>
       </div>
     </div>
 
+    <!-- バス（A/B選択） -->
     <div class="row">
-      <div class="row-time">11:00〜</div>
+      <div class="row-time">10:15<br><span style="font-size:11px;color:#888;">または<br>11:15</span></div>
       <div class="row-content">
-        <div class="row-main"><b>地獄めぐり観光</b></div>
-        <span class="badge nt">約2時間</span>
+        <div class="row-main"><b>別府駅西口 3番のりば</b> → <b>海地獄前</b></div>
+        <span class="badge tr">亀の井バス 7系統（野口原経由）</span>
+        <div class="bus-options">
+          <div class="bus-option bus-option-a">
+            <div class="bus-option-label">🅐 第1候補：10:15発 → 海地獄前 10:33着</div>
+            滞在たっぷり <b>10:35〜12:30頃（約2時間）</b><br>
+            海地獄 → 鬼石坊主地獄 → かまど地獄 → 足湯まで余裕で回れる！
+          </div>
+          <div class="bus-option bus-option-b">
+            <div class="bus-option-label">🅑 乗れなかった場合：11:15発 → 海地獄前 11:33着</div>
+            滞在 <b>11:35〜12:30頃（約1時間）</b><br>
+            <span class="bus-warn">⚠️ 海地獄を中心に。帰り 12:42 便は変えない！急ぎすぎず安全に。</span>
+          </div>
+        </div>
+        <div class="timetable">
+          <div class="timetable-title">別府駅西口 3番のりば発（亀の井バス 7系統）</div>
+          <div class="timetable-pills">
+            <span class="pill active">✔ 10:15</span>
+            <span class="pill">11:15</span>
+          </div>
+          <div class="timetable-note">所要約18分 ／ <a href="https://maps.google.com/?q=別府駅西口+バス乗り場" target="_blank" style="color:#185FA5;">📍 別府駅西口（Google マップ）</a></div>
+        </div>
       </div>
     </div>
 
+    <!-- 地獄めぐり -->
     <div class="row">
-      <div class="row-time">13:15頃</div>
+      <div class="row-time">〜12:30頃</div>
       <div class="row-content">
-        <div class="row-main"><b>海地獄前</b> → <b>別府駅西口</b>（13:45頃着）</div>
-        <span class="badge tr">亀の井バス</span>
+        <div class="row-main"><b>♨️ 地獄めぐり</b>（海地獄エリア）</div>
+        <div class="spot-list">
+          <span class="spot-tag">♨️ 海地獄</span>
+          <span class="spot-tag">♨️ 鬼石坊主地獄</span>
+          <span class="spot-tag">♨️ かまど地獄</span>
+          <span class="spot-tag">🦶 足湯</span>
+          <span class="spot-tag">☕ 休憩</span>
+        </div>
+        <div style="font-size:12px;margin-top:6px;">
+          <a href="https://maps.google.com/?q=海地獄+別府市" target="_blank" style="color:#185FA5;display:inline-block;padding:4px 0;">📍 海地獄前（Google マップ）</a>
+        </div>
       </div>
     </div>
 
+    <!-- 帰りバス（固定） -->
+    <div class="row">
+      <div class="row-time">12:42</div>
+      <div class="row-content">
+        <div class="row-main"><b>海地獄前</b> → <b>別府駅西口</b>（13:00〜13:05頃着）</div>
+        <span class="badge tr">亀の井バス 7系統（別府駅西口行）</span>
+        <div class="info-box green">
+          <div class="info-box-title">🟢 帰り便は 12:42 固定！</div>
+          所要約18〜20分 → 13:00〜13:05頃 別府駅西口着<br>
+          ソニック36号（14:19発）まで <b>約1時間15分の余裕</b> ✅<br>
+          子連れ・バス遅延・荷物引き取りも安全設計
+        </div>
+      </div>
+    </div>
+
+    <!-- バッファー -->
+    <div class="row buffer-row">
+      <div class="row-time">13:05〜<br>14:10</div>
+      <div class="row-content">
+        <div class="buffer-text">🟢 別府駅でゆっくり（約1時間）</div>
+        <div class="buffer-note">🚻 トイレ　🛍️ お土産　🍜 軽食　🧳 ロッカーから荷物受取　🚉 ホーム移動</div>
+      </div>
+    </div>
+
+    <!-- ソニック -->
     <div class="row">
       <div class="row-time">14:19</div>
       <div class="row-content">
